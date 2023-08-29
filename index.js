@@ -13,6 +13,7 @@ const multer = require("multer");
 const path = require("path");
 const helmet = require("helmet");
 const compression = require("compression");
+const { allowCors } = require("./utils/ErrorHandle");
 
 // setting for storing images
 const fileStorage = multer.diskStorage({
@@ -39,15 +40,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
+app.use(allowCors);
 
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array("images")
