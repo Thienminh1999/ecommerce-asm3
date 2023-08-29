@@ -39,6 +39,16 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array("images")
 );
@@ -76,7 +86,6 @@ app.use((req, res, next) => {
 
 // setup for call api
 // NOTE: need to change origin url when deploy to firebase
-console.log(process.env);
 app.use(
   cors({
     credentials: true,
@@ -87,16 +96,6 @@ app.use(
   })
 );
 app.use(express.json());
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
-  );
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
