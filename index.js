@@ -46,8 +46,8 @@ const fileFilter = (req, file, cb) => {
 app.use(
   cors({
     origin: [
-      "https://ecommerce-asm3.web.app/",
-      "https://ecommerce-asm3-admin.web.app/",
+      "https://ecommerce-asm3.web.app",
+      "https://ecommerce-asm3-admin.web.app",
     ],
   })
 );
