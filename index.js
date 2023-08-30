@@ -58,8 +58,8 @@ const fileFilter = (req, file, cb) => {
 app.use(function (req, res, next) {
   app.use((req, res, next) => {
     const allowedOrigins = [
-      `${process.env.ORIGIN_FE_CLIENT}`,
-      `${process.env.ORIGIN_FE_ADMIN}`,
+      `https://ecommerce-asm3.web.app`,
+      `https://ecommerce-asm3-admin.web.app`,
     ];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
