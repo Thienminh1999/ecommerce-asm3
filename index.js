@@ -46,11 +46,11 @@ const fileFilter = (req, file, cb) => {
 app.use(
   cors({
     credentials: true,
-    // origin: [
-    //   `${process.env.ORIGIN_FE_CLIENT}`,
-    //   `${process.env.ORIGIN_FE_ADMIN}`,
-    // ],
-    origin: "*",
+    origin: [
+      `${process.env.ORIGIN_FE_CLIENT}`,
+      `${process.env.ORIGIN_FE_ADMIN}`,
+    ],
+    // origin: "*",
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
   })
 );
