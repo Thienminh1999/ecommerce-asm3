@@ -40,7 +40,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-app.use(allowCors);
+app.use(allowCors());
 
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array("images")
