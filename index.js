@@ -43,17 +43,34 @@ const fileFilter = (req, file, cb) => {
 // app.use(allowCors());
 // setup for call api
 // NOTE: need to change origin url when deploy to firebase
-app.use(
-  cors({
-    credentials: true,
-    origin: [
+// app.use(
+//   cors({
+//     credentials: true,
+//     origin: [
+//       `${process.env.ORIGIN_FE_CLIENT}`,
+//       `${process.env.ORIGIN_FE_ADMIN}`,
+//     ],
+//     // origin: "*",
+//     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+//   })
+// );
+
+app.use(function (req, res, next) {
+  app.use((req, res, next) => {
+    const allowedOrigins = [
       `${process.env.ORIGIN_FE_CLIENT}`,
       `${process.env.ORIGIN_FE_ADMIN}`,
-    ],
-    // origin: "*",
-    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
-  })
-);
+    ];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+      res.setHeader("Access-Control-Allow-Origin", origin);
+    }
+    res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", true);
+    return next();
+  });
+});
 
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array("images")
