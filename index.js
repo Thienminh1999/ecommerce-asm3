@@ -51,8 +51,8 @@ app.use(
     //   `${process.env.ORIGIN_FE_ADMIN}`,
     // ],
     origin: [
-      `https://ecommerce-asm3.web.app`,
-      `https://ecommerce-asm3-admin.web.app`,
+      `https://ecommerce-asm3.web.app/`,
+      `https://ecommerce-asm3-admin.web.app/`,
     ],
     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH", "OPTIONS"],
   })
@@ -61,8 +61,8 @@ app.use(
 app.use(function (req, res, next) {
   app.use((req, res, next) => {
     const allowedOrigins = [
-      `https://ecommerce-asm3.web.app`,
-      `https://ecommerce-asm3-admin.web.app`,
+      `https://ecommerce-asm3.web.app/`,
+      `https://ecommerce-asm3-admin.web.app/`,
     ];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
