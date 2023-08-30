@@ -15,6 +15,16 @@ const helmet = require("helmet");
 const compression = require("compression");
 const { allowCors } = require("./utils/ErrorHandle");
 
+// app.use(
+//   cors({
+//     origin: [
+//       "https://ecommerce-asm3.web.app",
+//       "https://ecommerce-asm3-admin.web.app",
+//     ],
+//   })
+// );
+app.use(cors());
+
 // setting for storing images
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -43,14 +53,7 @@ const fileFilter = (req, file, cb) => {
 // app.use(allowCors());
 // setup for call api
 // NOTE: need to change origin url when deploy to firebase
-app.use(
-  cors({
-    origin: [
-      "https://ecommerce-asm3.web.app",
-      "https://ecommerce-asm3-admin.web.app",
-    ],
-  })
-);
+console.log("---------------");
 app.use(express.json());
 
 app.use(
@@ -103,20 +106,20 @@ app.use((req, res, next) => {
 //   })
 // );
 
-app.use(function (req, res, next) {
-  const allowedOrigins = [
-    `https://ecommerce-asm3.web.app/`,
-    `https://ecommerce-asm3-admin.web.app/`,
-  ];
-  const origin = req.headers.origin;
-  if (allowedOrigins.includes(origin)) {
-    res.setHeader("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  res.header("Access-Control-Allow-Credentials", true);
-  return next();
-});
+// app.use(function (req, res, next) {
+//   const allowedOrigins = [
+//     `https://ecommerce-asm3.web.app/`,
+//     `https://ecommerce-asm3-admin.web.app/`,
+//   ];
+//   const origin = req.headers.origin;
+//   if (allowedOrigins.includes(origin)) {
+//     res.setHeader("Access-Control-Allow-Origin", origin);
+//   }
+//   res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
+//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//   res.header("Access-Control-Allow-Credentials", true);
+//   return next();
+// });
 
 // app.use((req, res, next) => {
 //   res.setHeader("Access-Control-Allow-Credentials", true);
