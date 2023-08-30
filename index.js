@@ -82,10 +82,11 @@ app.use((req, res, next) => {
 app.use(
   cors({
     credentials: true,
-    origin: [
-      `${process.env.ORIGIN_FE_CLIENT}`,
-      `${process.env.ORIGIN_FE_ADMIN}`,
-    ],
+    // origin: [
+    //   `${process.env.ORIGIN_FE_CLIENT}`,
+    //   `${process.env.ORIGIN_FE_ADMIN}`,
+    // ],
+    origin: "*",
   })
 );
 app.use(express.json());
