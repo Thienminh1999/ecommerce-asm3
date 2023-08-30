@@ -23,7 +23,7 @@ const { allowCors } = require("./utils/ErrorHandle");
 //     ],
 //   })
 // );
-app.use(cors());
+app.use(cors({ credentials: true }));
 
 // setting for storing images
 const fileStorage = multer.diskStorage({
