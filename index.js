@@ -54,6 +54,7 @@ app.use(
       `https://ecommerce-asm3.web.app`,
       `https://ecommerce-asm3-admin.web.app`,
     ],
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH", "OPTIONS"],
   })
 );
 
