@@ -40,7 +40,20 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-app.use(allowCors());
+// app.use(allowCors());
+// setup for call api
+// NOTE: need to change origin url when deploy to firebase
+app.use(
+  cors({
+    credentials: true,
+    // origin: [
+    //   `${process.env.ORIGIN_FE_CLIENT}`,
+    //   `${process.env.ORIGIN_FE_ADMIN}`,
+    // ],
+    origin: "*",
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"],
+  })
+);
 
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array("images")
@@ -77,18 +90,6 @@ app.use((req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-// setup for call api
-// NOTE: need to change origin url when deploy to firebase
-app.use(
-  cors({
-    credentials: true,
-    // origin: [
-    //   `${process.env.ORIGIN_FE_CLIENT}`,
-    //   `${process.env.ORIGIN_FE_ADMIN}`,
-    // ],
-    origin: "*",
-  })
-);
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
