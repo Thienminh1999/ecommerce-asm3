@@ -43,6 +43,8 @@ const fileFilter = (req, file, cb) => {
 // app.use(allowCors());
 // setup for call api
 // NOTE: need to change origin url when deploy to firebase
+app.use(cors());
+app.use(express.json());
 
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).array("images")
@@ -79,38 +81,46 @@ app.use((req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-app.use(express.json());
+// app.use(
+//   cors({
+//     credentials: true,
+//     // origin: [
+//     //   `${process.env.ORIGIN_FE_CLIENT}`,
+//     //   `${process.env.ORIGIN_FE_ADMIN}`,
+//     // ],
+//     origin: [
+//       `https://ecommerce-asm3.web.app/`,
+//       `https://ecommerce-asm3-admin.web.app/`,
+//     ],
+//     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH", "OPTIONS"],
+//   })
+// );
 
-app.use(
-  cors({
-    credentials: true,
-    // origin: [
-    //   `${process.env.ORIGIN_FE_CLIENT}`,
-    //   `${process.env.ORIGIN_FE_ADMIN}`,
-    // ],
-    origin: [
-      `https://ecommerce-asm3.web.app/`,
-      `https://ecommerce-asm3-admin.web.app/`,
-    ],
-    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH", "OPTIONS"],
-  })
-);
+// app.use(function (req, res, next) {
+//   app.use((req, res, next) => {
+//     const allowedOrigins = [
+//       `https://ecommerce-asm3.web.app/`,
+//       `https://ecommerce-asm3-admin.web.app/`,
+//     ];
+//     const origin = req.headers.origin;
+//     if (allowedOrigins.includes(origin)) {
+//       res.setHeader("Access-Control-Allow-Origin", origin);
+//     }
+//     res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
+//     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+//     res.header("Access-Control-Allow-Credentials", true);
+//     return next();
+//   });
+// });
 
-app.use(function (req, res, next) {
-  app.use((req, res, next) => {
-    const allowedOrigins = [
-      `https://ecommerce-asm3.web.app/`,
-      `https://ecommerce-asm3-admin.web.app/`,
-    ];
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-      res.setHeader("Access-Control-Allow-Origin", origin);
-    }
-    res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", true);
-    return next();
-  });
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE"
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
 });
 
 app.use("/api/auth", authRoutes);
