@@ -15,15 +15,18 @@ const helmet = require("helmet");
 const compression = require("compression");
 const { allowCors } = require("./utils/ErrorHandle");
 
-// app.use(
-//   cors({
-//     origin: [
-//       "https://ecommerce-asm3.web.app",
-//       "https://ecommerce-asm3-admin.web.app",
-//     ],
-//   })
-// );
-app.use(cors({ credentials: true }));
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      "https://ecommerce-asm3.web.app",
+      "https://ecommerce-asm3-admin.web.app",
+      "http://localhost:3000",
+      "http://localhost:3001",
+    ],
+  })
+);
+// app.use(cors({ credentials: true }));
 
 // setting for storing images
 const fileStorage = multer.diskStorage({
