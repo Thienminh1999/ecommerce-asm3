@@ -14,20 +14,17 @@ const path = require("path");
 const helmet = require("helmet");
 const compression = require("compression");
 
-// TODO: change URL deploy to env variale
 app.use(
   cors({
     credentials: true,
     origin: [
       `${process.env.ORIGIN_FE_CLIENT}`,
       `${process.env.ORIGIN_FE_ADMIN}`,
-      // "https://ecommerce-asm3-admin.web.app",
       "http://localhost:3000",
       "http://localhost:3001",
     ],
   })
 );
-// app.use(cors({ credentials: true }));
 
 // setting for storing images
 const fileStorage = multer.diskStorage({
@@ -54,10 +51,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-// app.use(allowCors());
 // setup for call api
-// NOTE: need to change origin url when deploy to firebase
-console.log("---------------");
 app.use(express.json());
 
 app.use(
@@ -80,8 +74,8 @@ app.use(
     proxy: true,
     name: "MyCoolWebAppCookieName",
     cookie: {
-      sameSite: "none", // in order to response to both first-party and cross-site requests
-      secure: "auto", // it should set automatically to secure if is https.
+      sameSite: "none",
+      secure: "auto",
       httpOnly: true,
     },
   })

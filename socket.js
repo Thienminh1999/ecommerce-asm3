@@ -7,8 +7,8 @@ module.exports = {
         // methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
         // credentials: true,
         origin: [
-          "https://ecommerce-asm3.web.app",
-          "https://ecommerce-asm3-admin.web.app",
+          `${process.env.ORIGIN_FE_CLIENT}`,
+          `${process.env.ORIGIN_FE_ADMIN}`,
           "http://localhost:3000",
           "http://localhost:3001",
         ],
