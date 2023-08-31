@@ -14,6 +14,7 @@ const path = require("path");
 const helmet = require("helmet");
 const compression = require("compression");
 
+// TODO: change URL deploy to env variale
 app.use(
   cors({
     credentials: true,

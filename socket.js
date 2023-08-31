@@ -7,6 +7,7 @@ module.exports = {
         // methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
         // credentials: true,
         origin: "*",
+        credentials: true,
       },
     });
     return io;
