@@ -13,7 +13,6 @@ const multer = require("multer");
 const path = require("path");
 const helmet = require("helmet");
 const compression = require("compression");
-const { allowCors } = require("./utils/ErrorHandle");
 
 app.use(
   cors({
@@ -77,7 +76,8 @@ app.use(
     saveUninitialized: false,
     store: store,
     cookie: {
-      httpOnly: false,
+      httpOnly: true,
+      path: "/",
     },
   })
 );
