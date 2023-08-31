@@ -3,9 +3,10 @@ module.exports = {
   init: (httpServer) => {
     io = require("socket.io")(httpServer, {
       cors: {
-        origin: ["http://localhost:3000", "http://localhost:3001"],
-        methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
-        credentials: false,
+        // origin: ["http://localhost:3000", "http://localhost:3001"],
+        // methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
+        // credentials: false,
+        origin: "*",
       },
     });
     return io;
