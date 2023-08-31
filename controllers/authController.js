@@ -87,7 +87,7 @@ exports.login = (req, res, next) => {
 };
 
 exports.getCurrentUser = (req, res, next) => {
-  User.findOne({ _id: req.user._id }, "email fullName phone")
+  User.findOne({ _id: req.user._id }, "email fullName phone role")
     .then((user) => {
       res.status(200).send(user);
     })
