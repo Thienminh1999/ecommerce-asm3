@@ -97,56 +97,6 @@ app.use((req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-// app.use(
-//   cors({
-//     credentials: true,
-//     // origin: [
-//     //   `${process.env.ORIGIN_FE_CLIENT}`,
-//     //   `${process.env.ORIGIN_FE_ADMIN}`,
-//     // ],
-//     origin: [
-//       `https://ecommerce-asm3.web.app/`,
-//       `https://ecommerce-asm3-admin.web.app/`,
-//     ],
-//     methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH", "OPTIONS"],
-//   })
-// );
-
-// app.use(function (req, res, next) {
-//   const allowedOrigins = [
-//     `https://ecommerce-asm3.web.app/`,
-//     `https://ecommerce-asm3-admin.web.app/`,
-//   ];
-//   const origin = req.headers.origin;
-//   if (allowedOrigins.includes(origin)) {
-//     res.setHeader("Access-Control-Allow-Origin", origin);
-//   }
-//   res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
-//   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-//   res.header("Access-Control-Allow-Credentials", true);
-//   return next();
-// });
-
-// app.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Credentials", true);
-//   res.setHeader("Access-Control-Allow-Origin", "*");
-//   // another common pattern
-//   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-//   res.setHeader(
-//     "Access-Control-Allow-Methods",
-//     "GET,OPTIONS,PATCH,DELETE,POST,PUT"
-//   );
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
-//   );
-//   if (req.method === "OPTIONS") {
-//     res.status(200).end();
-//     return;
-//   }
-//   next();
-// });
-
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/shop", shopRoutes);
@@ -174,6 +124,7 @@ mongoose
     const server = app.listen(process.env.PORT || 5000);
     const io = require("./socket").init(server);
     io.on("connection", (socket) => {
+      console.log("socket is listening");
       socket.on("chat", function (msg) {
         io.emit("chat", msg);
       });
