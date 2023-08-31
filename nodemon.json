@@ -1,7 +1,5 @@
 {
   "env": {
-    "ORIGIN_FE_CLIENT": "http://localhost:3000",
-    "ORIGIN_FE_ADMIN": "http://localhost:3001",
     "MONGO_USER": "sa",
     "MONGO_PASSWORD": "Minhmomong83",
     "MONGO_DEFAULT_DATABASE": "ecommerceDB"

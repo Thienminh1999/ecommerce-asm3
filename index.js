@@ -19,8 +19,9 @@ app.use(
   cors({
     credentials: true,
     origin: [
-      "https://ecommerce-asm3.web.app",
-      "https://ecommerce-asm3-admin.web.app",
+      `${process.env.ORIGIN_FE_CLIENT}`,
+      `${process.env.ORIGIN_FE_ADMIN}`,
+      // "https://ecommerce-asm3-admin.web.app",
       "http://localhost:3000",
       "http://localhost:3001",
     ],
