@@ -75,6 +75,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: store,
+    proxy: true,
+    name: "MyCoolWebAppCookieName",
     cookie: {
       sameSite: "none", // in order to response to both first-party and cross-site requests
       secure: "auto", // it should set automatically to secure if is https.
