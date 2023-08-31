@@ -76,8 +76,9 @@ app.use(
     saveUninitialized: false,
     store: store,
     cookie: {
+      sameSite: "none", // in order to response to both first-party and cross-site requests
+      secure: "auto", // it should set automatically to secure if is https.
       httpOnly: true,
-      path: "/",
     },
   })
 );
