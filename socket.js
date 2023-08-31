@@ -12,7 +12,7 @@ module.exports = {
           "http://localhost:3000",
           "http://localhost:3001",
         ],
-        // credentials: true,
+        credentials: true,
       },
     });
     return io;
