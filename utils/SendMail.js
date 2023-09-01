@@ -26,7 +26,7 @@ exports.htmlContent = ({ customerInfo, products, totalPrice }) => {
     	<td style="border:1px solid black;text-align: center">${
         item.product.name
       }</td>
-        <td style="border:1px solid black;text-align: center"><img style="width: 60%" src="https://asm3-be-1kfy.onrender.com/${
+        <td style="border:1px solid black;text-align: center"><img style="width: 60%" src="cid:${
           item.product.img1
         }"/></td> 
         <td style="border:1px solid black;text-align: center">${

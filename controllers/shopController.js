@@ -110,11 +110,23 @@ exports.order = (req, res, next) => {
       res.status(200).send({ status: "success", order: result });
     })
     .then((result) => {
+      const attachments = [];
+      emailContent.products.map((item) => {
+        const urlImage = item.product.img1;
+        const attachItem = {
+          filename: urlImage.split("\\")[1],
+          path: "https://asm3-be-1kfy.onrender.com" + "/" + urlImage,
+          cid: urlImage,
+        };
+        attachments.push(attachItem);
+      });
+
       return transporter.sendMail({
         from: "chobanshopping@gmail.com",
         to: emailContent.customerEmail,
         subject: "[Confirm email for your order]",
         html: htmlContent(emailContent),
+        attachments: attachments,
       });
     })
     .catch((err) => {
